@@ -1,0 +1,51 @@
+@import "../../global.scss";
+
+
+.TitleHeading{
+    text-align: center;
+    color: $primary-color;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.Welcomeline{
+    text-align: center;
+    font-weight: bold
+}
+
+// Mobile View
+@media (min-width: 300px) and (max-width: 767px) {
+    .TitleHeading{
+        font-size: 25px;
+    }
+    .Welcomeline{
+        font-size: 15px;
+    }
+
+} //@media end
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .TitleHeading{
+        font-size: 50px;
+    }
+    .Welcomeline{
+        font-size: 40px;
+    }
+
+} //@media end
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .TitleHeading{
+        font-size: 40px;
+    }
+    .Welcomeline{
+        font-size: 30px;
+    }
+
+
+} //@media end
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+} //@media end

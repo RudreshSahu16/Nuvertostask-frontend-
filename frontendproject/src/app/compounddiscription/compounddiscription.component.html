@@ -1,0 +1,68 @@
+<div class="body-overflow">
+  <div class="row">
+    <div class="col-12 dailog-nav">
+      <a routerLink="/compoundlist">
+        <div class="row" style="flex-wrap: nowrap">
+          <div class="col-1">
+            <i class="fa fa-arrow-left back-arrow" aria-hidden="true"></i>
+          </div>
+          <div class="col-11" style="padding-top: 22px">
+            <span class="back-arrow"
+              >{{ compoundData.CompoundName | uppercase }} COMPOUND
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-11 text-center">
+      <h3 class="heading">{{ compoundData.CompoundName }}</h3>
+    </div>
+  </div>
+
+  <div class="row justify-content-center my-4">
+    <div class="col-11 text-center">
+      <img
+        src="{{ compoundData.CompondImageSource }}"
+        class="card-img-top rounded"
+        alt="Wait Wonderful Compound Are Loading.."
+        style="width: 250px; height: 150px"
+      />
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-11 text-center">
+      <h6>{{ compoundData.CompounrDescription }}</h6>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-11 text-center">
+      <p>Last Updated On:{{ compoundData.dateModified | date }}</p>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-4 text-center">
+      <button
+        class="btn btn-warning"
+        type="submit"
+        (click)="CompooundModification(compoundData, 'update')"
+      >
+        Update
+      </button>
+    </div>
+    <div class="col-4 text-center">
+      <button
+        class="btn btn-danger"
+        type="submit"
+        (click)="CompooundModification(compoundData, 'delete')"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

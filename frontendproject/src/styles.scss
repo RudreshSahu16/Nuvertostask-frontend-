@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+@import "global.scss";
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.body-overflow{
+  // height: 60vh !important;
+  width:100%;
+  overflow:hidden;
+}
+.back-arrow{
+  font-size: 18px;
+  padding-top: 26px;    
+  // 23px before
+  padding-left: 15px;
+  color: $primary-text-color;
+}
+
+.success-snackbar {
+  color: teal;
+  background-color: $primary-text-color;
+  font-weight: bold;
+}
+.failure-snackbar {
+  color: rgb(192, 9, 9);
+  background-color: $primary-text-color;
+  font-weight: bold;
+}

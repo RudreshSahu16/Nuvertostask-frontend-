@@ -1,0 +1,96 @@
+<div class="body-overflow">
+  <div class="row">
+    <div class="col-12 dailog-nav">
+      <a routerLink="/compoundlist">
+        <div class="row" style="flex-wrap: nowrap">
+          <div class="col-1">
+            <i class="fa fa-arrow-left back-arrow" aria-hidden="true"></i>
+          </div>
+          <div class="col-11" style="padding-top: 22px">
+            <span class="back-arrow"
+              >{{ operationtype.operationType | uppercase }} COMPOUND
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <form
+        [formGroup]="modifycompoundform"
+        (ngSubmit)="onSubmit(modifycompoundform, operationtype.operationType)"
+      >
+        <div class="row justify-content-center mt-4">
+          <div class="col-11 text-adjustment">
+            <div class="mb-3">
+              <label for="text" class="form-label">Compound Name</label>
+              <input
+                autocomplete="off"
+                formControlName="CompoundName"
+                type="text"
+                class="form-control text-adjustment"
+                [readonly]="makeallreadonly"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-2">
+          <div class="col-11 text-adjustment">
+            <div class="mb-3">
+              <label for="text" class="form-label">Compound Description</label>
+              <textarea
+                autocomplete="off"
+                formControlName="CompoundDescription"
+                type="text"
+                class="form-control text-adjustment"
+                [readonly]="makeallreadonly"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-2">
+          <div class="col-11 text-adjustment">
+            <div class="mb-3">
+              <label for="text" class="form-label">Compound Image Link</label>
+              <textarea
+                autocomplete="off"
+                formControlName="CompondImageSource"
+                type="text"
+                class="form-control text-adjustment"
+                [readonly]="makeallreadonly"
+                (change)="readURL($event)"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-2">
+          <div class="col-11 text-adjustment">
+            <div class="mb-3">
+              <label for="text" class="form-label">Add Date</label>
+              <input
+                autocomplete="off"
+                formControlName="dateModified"
+                type="date"
+                class="form-control text-adjustment text-center"
+                [readonly]="makeallreadonly"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center text-center">
+          <div class="col-11">
+            <button class="btn btn-danger" type="submit">
+              {{ operationtype.operationType | uppercase }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
