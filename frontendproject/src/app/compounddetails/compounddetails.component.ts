@@ -19,6 +19,7 @@ export class CompounddetailsComponent implements OnInit {
   ispreview:boolean=false;
   makeallreadonly:boolean=false;
   response: any;
+  imageFile:boolean=false;
   constructor(private datashare:DatatransferService, private commanService:CommanService, private router:Router) { }
 
   ngOnInit(): void {
@@ -34,15 +35,16 @@ export class CompounddetailsComponent implements OnInit {
       CompondImageSource:new FormControl('',[Validators.required]),
       CompoundDescription:new FormControl('',[Validators.required]),
       dateModified:new FormControl('',[Validators.required]),
+      fileSource: new FormControl('', [Validators.required]) 
     })
 
 
     if(this.operationtype.operationType=='update' || this.operationtype.operationType=='delete'){
       this.modifycompoundform.controls.CompoundName.setValue(this.operationtype.CompoundName);
       this.modifycompoundform.controls.CompoundDescription.setValue(this.operationtype.CompounrDescription);
-      this.modifycompoundform.controls.CompondImageSource.setValue(this.operationtype.CompondImageSource);
-      
-      // this.notChangeable=true;
+      // this.modifycompoundform.controls.CompondImageSource.setValue(this.operationtype.CompondImageSource);
+      this.imageSrc=this.operationtype.CompondImageSource
+      this.ispreview=true
       if(this.operationtype.operationType=='delete'){
         this.makeallreadonly=true;
       }
@@ -51,17 +53,29 @@ export class CompounddetailsComponent implements OnInit {
   }
 
   readURL(event) {
-    this.imageSrc = event.target.value;
+    if (event.target.files && event.target.files[0])   {
+      const file = event.target.files[0];
+      this.imageFile= true 
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageSrc = e.target.result;
+        
+      };
+      this.ispreview = true;
+      
+      reader.readAsDataURL(file);
+    }
   }
   onSubmit(form,operationtype){
     var data={
       "CompoundName":form.value.CompoundName,
       "CompoundDescription":form.value.CompoundDescription,
       "dateModified":form.value.dateModified,
-    }
-
+      }
+    
     // Add product 
     if(operationtype == 'add'){
+      
       data["CompondImageSource"]=this.imageSrc
       
       this.commanService.httpclient.callServerForPost(GlobeApis.ADDCOMPOUND,data).subscribe(
@@ -98,9 +112,17 @@ export class CompounddetailsComponent implements OnInit {
 
     // Update product
     else if(operationtype =='update'){
+      if(this.imageFile){
+        data["CompondImageSource"]=this.imageSrc
+        data["isimagechange"]=true 
+      }
+      else{
+        data["CompondImageSource"]=this.operationtype.CompondImageSource;
+        data["isimagechange"]=false
+
+      }
       data["CompoundId"]=this.operationtype.CompoundId
 
-      data["CompondImageSource"]=form.value.CompondImageSource,
       
       this.commanService.httpclient.callServerForPut(GlobeApis.UPDATECOMPOUND,data).subscribe(
         (val)=>{

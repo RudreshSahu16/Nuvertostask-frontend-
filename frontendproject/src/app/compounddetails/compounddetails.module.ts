@@ -4,6 +4,7 @@ import { CompounddetailsComponent } from './compounddetails.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 const Route : Routes =[
   {path:'',component:CompounddetailsComponent},
   
@@ -15,7 +16,8 @@ const Route : Routes =[
     CommonModule,
     RouterModule.forChild(Route),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ]
 })
 export class CompounddetailsModule { }

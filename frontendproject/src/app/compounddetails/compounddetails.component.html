@@ -55,22 +55,6 @@
         <div class="row justify-content-center mt-2">
           <div class="col-11 text-adjustment">
             <div class="mb-3">
-              <label for="text" class="form-label">Compound Image Link</label>
-              <textarea
-                autocomplete="off"
-                formControlName="CompondImageSource"
-                type="text"
-                class="form-control text-adjustment"
-                [readonly]="makeallreadonly"
-                (change)="readURL($event)"
-              ></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="row justify-content-center mt-2">
-          <div class="col-11 text-adjustment">
-            <div class="mb-3">
               <label for="text" class="form-label">Add Date</label>
               <input
                 autocomplete="off"
@@ -78,6 +62,41 @@
                 type="date"
                 class="form-control text-adjustment text-center"
                 [readonly]="makeallreadonly"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-2">
+          <div class="col-11 text-adjustment">
+            <div class="mb-3">
+              <label for="text" class="form-label">Compound Image Link</label>
+
+              <input
+                autocomplete="off"
+                formControlName="CompondImageSource"
+                type="file"
+                class="form-control text-adjustment"
+                (change)="readURL($event)"
+                [readonly]="makeallreadonly"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="row justify-content-center mt-2 text-center"
+          *ngIf="ispreview"
+        >
+          <div class="col-11 text-adjustment">
+            <div class="mb-3">
+              <label for="text" class="form-label">Preview</label>
+              <br />
+              <img
+                id="blah"
+                style="width: 200px; height: 200px"
+                [src]="imageSrc"
+                alt="your image"
               />
             </div>
           </div>
